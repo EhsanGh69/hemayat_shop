@@ -1,0 +1,193 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}| محصولات صنایع دستی{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-10">
+                <div class="card bg-light margin-card">
+                    <div class="card-header text-info h4">محصولات صنایع دستی</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <a class="btn btn-warning active">همه</a>
+                            <a class="btn btn-warning">بافتنی و قلاب بافی</a>
+                            <a class="btn btn-warning">تسبیح</a>
+                            <a class="btn btn-warning">قلمکاری و ویترای</a>
+                            <a class="btn btn-warning mt-2 mt-md-0">صنایع چوب</a>
+                            <a class="btn btn-warning mt-2 mt-md-0">پوشاک</a>
+                            <a class="btn btn-warning mt-2 mt-lg-0">کیف و کفش</a>
+                            <a class="btn btn-warning mt-2 mt-lg-0">زیورآلات</a>
+                        </div>
+                        
+                        <div class="row px-2">
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/crocheting.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" alt="crocheting">
+                                    <div class="card-body">
+                                        <h5 class="card-title">قلاب بافی</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/knitting.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="knitting">
+                                    <div class="card-body">
+                                        <h5 class="card-title">بافتنی</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/rosary.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="rosary">
+                                    <div class="card-body">
+                                        <h5 class="card-title">تسبیح</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/etching.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="etching">
+                                    <div class="card-body">
+                                        <h5 class="card-title">قلمکاری</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/vitrai.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="vitrai">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ویترای</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/wooden_arts.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="wooden_arts">
+                                    <div class="card-body">
+                                        <h5 class="card-title">صنایع چوبی</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/clothing.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="clothing">
+                                    <div class="card-body">
+                                        <h5 class="card-title">پوشاک</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/bags_shoes.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="bags_shoes">
+                                    <div class="card-body">
+                                        <h5 class="card-title">کیف و کفش</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 col-md-4 col-lg-3">
+                                <div class="card">
+                                    <img src="{% static 'shop/images/ornaments.jpg' %}"
+                                    style="height: 150px;"
+                                    class="card-img-top w-100" 
+                                    alt="ornaments">
+                                    <div class="card-body">
+                                        <h5 class="card-title">زیورآلات</h5>
+                                        <p class="card-text">
+                                            <a href="#">جزئیات بیشتر  ...</a>
+                                        </p>
+                                        <a href="#" class="btn btn-primary" title="افزودن به سبد خرید">
+                                            <span class="icon-plus" style="font-size: 1rem"></span>
+                                            <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

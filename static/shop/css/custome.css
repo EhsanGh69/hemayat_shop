@@ -1,0 +1,85 @@
+*{
+    direction: rtl;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+footer {
+  height: 10rem;
+  padding-top: 2rem;
+  padding-right: 2rem;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 20px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #e8ca69;
+  color: #f16821;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#collapse-menu a span {
+    font-weight: normal;
+    display: inline-block;
+}
+
+#collapse-menu .icon-chevron-left {
+    transition: all 0.3s;
+}
+
+#collapse-menu #collapse-btn.collapsed .icon-chevron-left {
+    transform: rotate(0deg);
+}
+
+#collapse-menu #collapse-btn .icon-chevron-left {
+    transform: rotate(-90deg);
+}
+
+#products-section .product-item img, #blog-section img {
+  height: 200px;
+  width: 300px;
+}
+
+#cart-table td img {
+  width: 100px;
+  border-radius: 8px;
+}
+
+#cart-table td input[type=number] {
+  width: 3rem;
+}
+
+.margin-card {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}

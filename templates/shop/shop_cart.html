@@ -1,0 +1,95 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}| سبد خرید{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-12">
+                <div class="card bg-light mb-3 margin-card">
+                    <div class="card-header text-info h4">مشاهد سبد خرید و پرداخت</div>
+                    <div class="card-body">
+                        <table class="table table-striped" id="cart-table">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="text-center" style="width: 25rem">محصول</th>
+                                <th scope="col" class="text-center">قیمت واحد</th>
+                                <th scope="col" class="text-center">تعداد</th>
+                                <th scope="col" class="text-center">قیمت کل</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="d-flex justify-content-center">
+                                    <div class="mx-4">
+                                        <img src="{% static 'shop/images/sample_cart.png' %}" alt="">
+                                    </div>
+                                    <div class="mt-4">
+                                        <p><strong>عنوان محصول</strong></p>
+                                        <p><strong>توضیحات</strong></p>
+                                    </div>
+                                </td>
+                                <td class="text-center">1000</td>
+                                <td class="text-center">
+                                    <input type="number" name="" min="1" value="1">
+                                </td>
+                                <td class="text-center">1000</td>
+                              </tr>
+                              <tr>
+                                <td class="d-flex justify-content-center">
+                                    <div class="mx-4">
+                                        <img src="{% static 'shop/images/sample_cart.png' %}" alt="">
+                                    </div>
+                                    <div class="mt-4">
+                                        <p><strong>عنوان محصول</strong></p>
+                                        <p><strong>توضیحات</strong></p>
+                                    </div>
+                                </td>
+                                <td class="text-center">1000</td>
+                                <td class="text-center">
+                                    <input type="number" name="" min="1" value="1">
+                                </td>
+                                <td class="text-center">1000</td>
+                              </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><strong>کل مبلغ سبد خرید</strong></td>
+                                    <td><strong>2000</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <hr>
+
+                        <p class="text-info">
+                            <i>جهت پرداخت مبلغ سبد خرید، پس از تکمیل فرم زیر بر روی دکمه پرداخت کلیک نمایید</i>
+                        </p>
+
+                        <form>
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="نام">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <input type="password" class="form-control" placeholder="نام خانوادگی">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <textarea name="" placeholder="نشانی پستی" rows="5" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" placeholder="کد پستی">
+                                </div>
+                            </div>
+                            <button disabled="disabled" class="btn btn-primary">پرداخت</button>
+                          </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

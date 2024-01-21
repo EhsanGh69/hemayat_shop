@@ -1,0 +1,25 @@
+<li><a href="{% url 'shop:home' %}" class="nav-link">خانه</a></li>
+<li class="dropdown d-none d-xl-inline">
+    <a class="nav-link dropdown">محصولات</a>
+    <div class="dropdown-content">
+        <a href="{% url 'shop:handicrafts_products' %}">صنایع دستی</a>
+        <a class="text-secondary">مواد غذایی</a>
+        <a class="text-secondary">لوازم خانگی</a>
+        <a class="text-secondary">تفریح و گردشگری</a>
+    </div>
+</li>
+<li class="d-xl-none" id="collapse-menu">
+    <a class="btn btn-default text-right collapsed" id="collapse-btn" data-toggle="collapse" data-target="#submenu">
+        <span class="ml-5">محصولات</span>
+        <span class="icon-chevron-left mr-5"></span>
+    </a>
+    <div class="collapse bg-light" id="submenu">
+        <a href="{% url 'shop:handicrafts_products' %}">صنایع دستی</a>
+        <a class="text-secondary">مواد غذایی</a>
+        <a class="text-secondary">لوازم خانگی</a>
+        <a class="text-secondary">تفریح و گردشگری</a>
+    </div>
+</li>
+<li><a href="{% url 'shop:shop_cart' %}" class="nav-link">سبد خرید</a></li>
+<li><a href="{% url 'shop:news_letters' %}" class="nav-link">خبرنامه</a></li>
+<li><a href="{% url 'shop:contact_us' %}" class="nav-link">تماس با ما</a></li>
