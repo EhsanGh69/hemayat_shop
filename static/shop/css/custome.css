@@ -83,3 +83,9 @@ footer {
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
+
+#news-detail img {
+  width: 300;
+  height: 200;
+}
+

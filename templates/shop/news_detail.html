@@ -1,0 +1,37 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load jformat %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-12">
+                <div class="card bg-light margin-card">
+                    <div class="card-body" id="news-detail">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h1>{{ news.title }}</h1>
+                                <div>
+                                    <p>
+                                        <span class="icon-user"></span>
+                                        <span>{{ news.author }}</span>
+                                    </p>
+                                    <p class="d-flex">
+                                        <span class="icon-calendar ml-1"></span>
+                                        <span>{{ news.create_date|jformat:'%d / %m / %Y' }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="{{ news.news_img.url }}" alt="news image" width="300">
+                            </div>
+                        </div>
+                        <p>{{ news.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -10,57 +10,59 @@
                 <div class="card bg-light mb-3 margin-card">
                     <div class="card-header text-info h4">مشاهد سبد خرید و پرداخت</div>
                     <div class="card-body">
-                        <table class="table table-striped" id="cart-table">
-                            <thead>
-                              <tr>
-                                <th scope="col" class="text-center" style="width: 25rem">محصول</th>
-                                <th scope="col" class="text-center">قیمت واحد</th>
-                                <th scope="col" class="text-center">تعداد</th>
-                                <th scope="col" class="text-center">قیمت کل</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td class="d-flex justify-content-center">
-                                    <div class="mx-4">
-                                        <img src="{% static 'shop/images/sample_cart.png' %}" alt="">
-                                    </div>
-                                    <div class="mt-4">
-                                        <p><strong>عنوان محصول</strong></p>
-                                        <p><strong>توضیحات</strong></p>
-                                    </div>
-                                </td>
-                                <td class="text-center">1000</td>
-                                <td class="text-center">
-                                    <input type="number" name="" min="1" value="1">
-                                </td>
-                                <td class="text-center">1000</td>
-                              </tr>
-                              <tr>
-                                <td class="d-flex justify-content-center">
-                                    <div class="mx-4">
-                                        <img src="{% static 'shop/images/sample_cart.png' %}" alt="">
-                                    </div>
-                                    <div class="mt-4">
-                                        <p><strong>عنوان محصول</strong></p>
-                                        <p><strong>توضیحات</strong></p>
-                                    </div>
-                                </td>
-                                <td class="text-center">1000</td>
-                                <td class="text-center">
-                                    <input type="number" name="" min="1" value="1">
-                                </td>
-                                <td class="text-center">1000</td>
-                              </tr>
-                            </tbody>
-                            <tfoot>
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="cart-table">
+                                <thead>
                                 <tr>
-                                    <td><strong>کل مبلغ سبد خرید</strong></td>
-                                    <td><strong>2000</strong></td>
+                                    <th scope="col" class="text-center" style="width: 25rem">محصول</th>
+                                    <th scope="col" class="text-center">قیمت واحد</th>
+                                    <th scope="col" class="text-center">تعداد</th>
+                                    <th scope="col" class="text-center">قیمت کل</th>
                                 </tr>
-                            </tfoot>
-                        </table>
-
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="d-flex justify-content-center">
+                                        <div class="mx-4">
+                                            <img src="{% static 'shop/images/sample_cart.png' %}" alt="">
+                                        </div>
+                                        <div class="mt-4">
+                                            <p><strong>عنوان محصول</strong></p>
+                                            <p><strong>توضیحات</strong></p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">1000</td>
+                                    <td class="text-center">
+                                        <input type="number" name="" min="1" value="1">
+                                    </td>
+                                    <td class="text-center">1000</td>
+                                </tr>
+                                <tr>
+                                    <td class="d-flex justify-content-center">
+                                        <div class="mx-4">
+                                            <img src="{% static 'shop/images/sample_cart.png' %}" alt="">
+                                        </div>
+                                        <div class="mt-4">
+                                            <p><strong>عنوان محصول</strong></p>
+                                            <p><strong>توضیحات</strong></p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">1000</td>
+                                    <td class="text-center">
+                                        <input type="number" name="" min="1" value="1">
+                                    </td>
+                                    <td class="text-center">1000</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><strong>کل مبلغ سبد خرید</strong></td>
+                                        <td><strong>2000</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        
                         <hr>
 
                         <p class="text-info">

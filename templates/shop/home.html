@@ -1,10 +1,11 @@
 {% extends "shop/base.html" %}
 {% load static %}
+{% load jformat %}
 
 {% block content %}
     <div class="site-blocks-cover mb-5" 
-    style="background-image: url({% static 'shop/images/handicrafts_banner.jpg' %});"
-    data-aos="fade" data-stellar-background-ratio="0.5">
+        style="background-image: url({% static 'shop/images/handicrafts_banner.jpg' %});"
+        data-aos="fade" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
@@ -99,55 +100,22 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <div class="h-entry text-center">
-                        <img src="{% static 'shop/images/news1.jpg' %}" alt="news1" class="img-fluid">
-                        <h2 class="font-size-regular">
-                            <a href="#" class="text-black">
-                                برپایی غرفه در نمایشگاه بین المللی
-                            </a>
-                        </h2>
-                        <div class="meta mb-4">نام نویسنده <span class="mx-2">&bullet;</span> تاریخ خبر<span
-                                class="mx-2"></div>
-                        <p>
-                            برپایی غرفه در نمایشگاه بین المللی به مناسبت فرارسیدن شب یلدا جهت کسب درآمد بنفع خانواده های محترم زندانیان
-                        </p>
-                        <p><a href="#">ادامه خواندن خبر ...</a></p>
+                {% for news in news_letters %}
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="h-entry text-center">
+                            <img src="{{ news.news_img.url }}" alt="news image" class="img-fluid">
+                            <h2 class="font-size-regular">
+                                {{ news.title }}
+                            </h2>
+                            <div class="meta mb-4">{{ news.author }} 
+                                <span class="mx-2">&bullet;
+                                </span>{{ news.create_date|jformat:'%d / %m / %Y' }}<span class="mx-2">
+                            </div>
+                            <p>{{ news.content|truncatewords:10 }}</p>
+                            <p><a href="{% url 'shop:news_detail' news.get_slug %}">ادامه خواندن خبر ...</a></p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="h-entry text-center">
-                        <img src="{% static 'shop/images/news2.jpg' %}" alt="news2" class="img-fluid">
-                        <h2 class="font-size-regular">
-                            <a href="#" class="text-black">
-                                توزیع سبد کالا ،کارت هدیه و غذای گرم به مناسبت شب یلدا
-                            </a>
-                        </h2>
-                        <div class="meta mb-4">نام نویسنده <span class="mx-2">&bullet;</span> تاریخ خبر<span
-                                class="mx-2"></div>
-                        <p>
-                            در روز پنجشنبه مورخ ۲۳ آذر ماه  این انجمن به مناسبت فرا رسیدن  شب یلدا  اقدام به تهیه وتوزیع سبد کالا شامل: .
-                        </p>
-                        <p><a href="#">ادامه خواندن خبر ...</a></p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="h-entry text-center">
-                        <img src="{% static 'shop/images/news3.jpg' %}" alt="news3" class="img-fluid">
-                        <h2 class="font-size-regular">
-                            <a href="#" class="text-black">
-                                جلسه با کارشناسان محترم دفتر امور پیشگیری از وقوع جرم دادگستری استان مرکزی
-                            </a>
-                        </h2>
-                        <div class="meta mb-4">نام نویسنده <span class="mx-2">&bullet;</span> تاریخ خبر<span
-                                class="mx-2"></div>
-                        <p>
-                            روز سه شنبه مورخ ۱۴۰۲/۰۹/۱۴ جلسه ای باحضور سرکار خانم اسفندانی و جناب آقای هاشمی کارشناسان محترم 
-                        </p>
-                        <p><a href="#">ادامه خواندن خبر ...</a></p>
-                    </div>
-                </div>
-                
+                {% endfor %}
             </div>
         </div>
     </div>
