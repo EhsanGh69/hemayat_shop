@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=250, verbose_name='عنوان خبر')),
                 ('content', models.TextField(verbose_name='متن خبر')),
                 ('author', models.CharField(blank=True, max_length=250, null=True, verbose_name='نویسنده خبر')),
-                ('news_img', models.ImageField(upload_to=shop.models.get_image_path, verbose_name='تصویر')),
+                ('news_img', models.ImageField(upload_to=shop.models.news_image_path, verbose_name='تصویر')),
                 ('create_date', django_jalali.db.models.jDateField(auto_now_add=True)),
                 ('update_date', django_jalali.db.models.jDateTimeField(auto_now=True)),
             ],

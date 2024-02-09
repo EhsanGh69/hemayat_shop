@@ -20,6 +20,13 @@
         <a class="text-secondary">تفریح و گردشگری</a>
     </div>
 </li>
-<li><a href="{% url 'shop:shop_cart' %}" class="nav-link">سبد خرید</a></li>
+<li>
+    <a href="{% url 'shop:shop_cart' %}" class="nav-link">
+        <span>سبد خرید</span>
+        <span class="badge badge-danger text-light">
+            {% if cart_count %}{{ cart_count }}{% else %}0{% endif %}
+        </span>
+    </a>
+</li>
 <li><a href="{% url 'shop:news_letters' %}" class="nav-link">خبرنامه</a></li>
 <li><a href="{% url 'shop:contact_us' %}" class="nav-link">تماس با ما</a></li>

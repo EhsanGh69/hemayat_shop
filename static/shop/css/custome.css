@@ -70,6 +70,10 @@ footer {
   width: 300px;
 }
 
+#products-section .product-item a {
+  font-size: 1rem;
+}
+
 #cart-table td img {
   width: 100px;
   border-radius: 8px;
@@ -88,4 +92,9 @@ footer {
   width: 300;
   height: 200;
 }
+
+#cat-list a {
+  font-size: 1rem;
+}
+
 

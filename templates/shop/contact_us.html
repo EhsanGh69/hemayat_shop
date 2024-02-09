@@ -1,50 +1,58 @@
 {% extends "shop/base.html" %}
-{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block title %}| تماس با ما{% endblock %}
 
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                {% include "shop/partials/cart_modal.html" with message=message products='' %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     <div class="site-section bg-light" id="contact-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7 mb-5">
 
-                    <form action="#" class="p-5 bg-white">
+                    <form class="p-5 bg-white" method="post">
+                        {% csrf_token %}
                         <h2 class="h4 text-black mb-5">فرم تماس با ما</h2>
                         <div class="row form-group">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <label class="text-black" for="fname">نام</label>
-                                <input type="text" id="fname" class="form-control rounded-0">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="text-black" for="lname">نام خانوادگی</label>
-                                <input type="text" id="lname" class="form-control rounded-0">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-
                             <div class="col-md-12">
-                                <label class="text-black" for="email">ایمیل</label>
-                                <input type="email" id="email" class="form-control rounded-0">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-
-                            <div class="col-md-12">
-                                <label class="text-black" for="subject">موضوع</label>
-                                <input type="subject" id="subject" class="form-control rounded-0">
+                                {{ form.full_name|as_crispy_field }}
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="text-black" for="message">متن پیام</label>
-                                <textarea name="message" id="message" cols="30" rows="7" class="form-control rounded-0"
-                                        placeholder="سوال و یا نظر خود را در اینجا وارد کنید تا پیگیری شود..."></textarea>
+                                {{ form.email|as_crispy_field }}
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input type="submit" value="ارسال" class="btn btn-black rounded-0 py-3 px-4">
+                                {{ form.subject|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="text-secondary">{{ form.message.label }}*</label>
+                                {% if form.message.errors %}
+                                    {{ form.message|add_class:"form-control border border-danger"|attr:"rows:5"|attr:"placeholder:پیام خود را اینجا وارد کنید" }}
+                                    {% for error in form.message.errors %}
+                                        <strong class="form-text text-danger" style="font-size:80%">{{ error }}</strong>
+                                    {% endfor %}
+                                {% else %}
+                                    {{ form.message|add_class:"form-control"|attr:"rows:5"|attr:"placeholder:پیام خود را اینجا وارد کنید" }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="ارسال" style="font-size: 1rem;"
+                                class="btn btn-outline-info btn-block rounded py-3 px-4 mt-3">
                             </div>
                         </div>
                     </form>
@@ -52,4 +60,12 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script type="application/javascript">
+        $(document).ready(function(){
+            $('#exampleModal').modal({show:true});
+        });
+    </script>
 {% endblock %}

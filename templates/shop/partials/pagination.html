@@ -1,0 +1,48 @@
+{% load shop_tags %}
+
+{% if page_obj.has_other_pages %}
+    <nav class="col-12 col-sm-6 offset-sm-3 col-md-4 offset-md-4">
+        <ul class="pagination justify-content-center flex-row-reverse">
+            
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link rounded-0" 
+                    href="{% url all_url page_obj.previous_page_number %}{% if category %}?category={{category}}{% endif %}">
+                        قبلی
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page_item in page_obj.paginator.page_range %}
+                {% if page_obj.number != page_item %}
+                    {% if page_obj.number|min:page_item == 1 or page_item|min:page_obj.number == 1 or forloop.first or forloop.last %}
+                        <li class="page-item">
+                            <a class="page-link rounded-0" 
+                            href="{% url all_url page_item %}{% if category %}?category={{category}}{% endif %}">
+                                {{ page_item }}
+                            </a>
+                        </li>
+                    {% elif page_obj.number|min:page_item == 2 or page_item|min:page_obj.number == 2 %}
+                        <li class="mx-2">
+                            <span>...</span>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="page-item active">
+                        <span class="page-link rounded-0">{{ page_item }}</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link rounded-0" 
+                    href="{% url all_url page_obj.next_page_number %}{% if category %}?category={{category}}{% endif %}">
+                        بعدی
+                    </a>
+                </li>
+            {% endif %}
+            
+        </ul>
+    </nav>
+{% endif %}

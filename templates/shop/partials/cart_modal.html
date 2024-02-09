@@ -1,0 +1,46 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+            {% if products %}
+                <div class="mt-2 pb-3 d-flex justify-content-between border-bottom">
+                    <h5 class="modal-title text-success" id="exampleModalLabel">
+                        <span class="icon-check"></span>
+                        <span>محصول به سبد خرید شما اضافه شد</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% for product in products %}
+                        {% if product.id|slugify == message|slugify %}
+                            <div class="d-flex">
+                                <img src="{{ product.product_img.url }}" alt="product_img" width="120" height="150">
+                                <h5 class="mr-2">{{ product.title }}</h5>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'shop:shop_cart' %}"
+                    style="font-size: 1.2rem"
+                    class="btn btn-primary btn-block">مشاهده سبد خرید</a>
+                </div>
+            {% else %}
+                <div class="mt-2 pb-3 d-flex flex-row-reverse">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title text-success" id="exampleModalLabel">
+                        <span class="icon-check"></span>
+                        <span>{{ message }}</span>
+                    </h5>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+

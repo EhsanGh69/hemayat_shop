@@ -1,0 +1,41 @@
+<div class="card">
+    <img src="{{ product.product_img.url }}"
+    style="{% if detail_url %}height: 150px;{% else %}height: 300px;{% endif %}"
+    class="card-img-top w-100" alt="crocheting">
+    <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">
+            {% if detail_url %}
+                <a href="{% url detail_url slug %}?category={{ product.category.title }}">جزئیات بیشتر  ...</a>
+            {% else %}
+                {{ product.desc }}
+            {% endif %}
+        </p>
+        
+        {% if product in cart_products %}
+            <div class="d-flex justify-content-between">
+                <p class="d-flex flex-column mb-0">
+                    <span>موجود در سبد خرید شما</span>
+                    <a href="{% url 'shop:shop_cart' %}">مشاهده سبد خرید</a>
+                </p>
+                <p class="font-weight-bold">{{ product.price }} تومان</p>
+            </div>
+        {% elif product.status %}
+            <div class="d-flex justify-content-between">
+                <form action="{% url 'shop:add_to_cart' %}{% if request.GET.category %}?category={{ product.category.title }}{% endif %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{product.id}}">
+                    <button class="btn btn-primary"
+                    data-toggle="modal" data-target="#cartModal"
+                    title="افزودن به سبد خرید" type="submit">
+                        <span class="icon-plus" style="font-size: 1rem"></span>
+                        <span class="icon-shopping-cart" style="font-size: 1.2rem"></span>
+                    </button>
+                </form>
+                <span class="font-weight-bold">{{ product.price }} تومان</span>
+            </div>
+        {% else %}
+            <span class="alert alert-danger mt-2">ناموجود</span>
+        {% endif %}
+    </div>
+</div>

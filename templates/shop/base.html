@@ -1,4 +1,5 @@
 {% load static %}
+{% load render_partial %}
 
 <!DOCTYPE html>
 <html lang="fa">
@@ -22,7 +23,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
     <div class="site-wrap">
-        {% include "shop/partials/navbar.html" %}
+        {% render_partial "shop.views.navbar_view" %}
 
         {% block content %}{% endblock %}
 
@@ -43,5 +44,8 @@
     <script src="{% static 'shop/js/jquery.fancybox.min.js' %}"></script>
     <script src="{% static 'shop/js/jquery.sticky.min.js' %}"></script>
     <script src="{% static 'shop/js/main.min.js' %}"></script>
+
+    {% block script %}{% endblock %}
+
 </body>
 </html>

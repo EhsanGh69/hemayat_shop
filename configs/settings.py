@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_render_partial',
     'django_cleanup.apps.CleanupConfig',
     'shop.apps.ShopConfig'
 ]
@@ -42,6 +43,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'shop.middleware.SaveIPAddressMiddleware',
+    'shop.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'configs.urls'
@@ -139,3 +142,5 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MAX_UPLOAD_SIZE = 153600 # 150 * 1024 = 150kb
+# SESSION_EXPIRE_AT_BROWSER_CLOSE= True
+# SESSION_COOKIE_AGE = 60

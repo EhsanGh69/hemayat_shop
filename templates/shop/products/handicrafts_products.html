@@ -1,0 +1,38 @@
+{% extends "shop/products/base_products.html" %}
+{% load static %}
+
+{% block title %}| محصولات صنایع دستی{% endblock %}
+
+{% block cat_title %}صنایع دستی{% endblock %}
+
+{% block cat_list %}
+    {% include "shop/products/components/cat_list.html" with all_url='shop:handicrafts_products' categories=hand_categories %}
+{% endblock %}
+
+{% block product_card %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                {% include "shop/partials/cart_modal.html" with message=message products=hand_products %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% for product in hand_products %}
+        <div class="mt-3 col-12 col-md-6 col-lg-4 col-xl-3">
+            {% include "shop/products/components/single_card.html" with product=product cart_products=cart_products detail_url='shop:handicraft_product' slug=product.get_slug %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+    {% include "shop/partials/pagination.html" with page_obj=page_obj all_url='shop:handicrafts_products' category=request.GET.category %}
+{% endblock %}
+
+
+{% block script %}
+    <script type="application/javascript">
+        $(document).ready(function(){
+            $('#exampleModal').modal({show:true});
+        });
+    </script>
+{% endblock %}

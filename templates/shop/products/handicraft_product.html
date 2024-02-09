@@ -1,0 +1,16 @@
+{% extends "shop/products/base_products.html" %}
+{% load static %}
+
+{% block title %}| محصولات صنایع دستی{% endblock %}
+
+{% block cat_title %}صنایع دستی{% endblock %}
+
+{% block cat_list %}
+    {% include "shop/products/components/cat_list.html" with all_url='shop:handicrafts_products' categories=hand_categories %}
+{% endblock %}
+
+{% block product_card %}
+    <div class="mt-3 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        {% include "shop/products/components/single_card.html" with product=hand_product detail_url='' cart_products=cart_products %}
+    </div>
+{% endblock %}
