@@ -6,16 +6,6 @@ from jdatetime import datetime
 
 
 
-
-
-class IPAddress(models.Model):
-    ip_address = models.GenericIPAddressField(verbose_name='آدرس آی پی')
-
-    def __str__(self):
-        return self.ip_address
-
-
-
 class ProductCategory(models.Model):
     MAIN_CATS = (
         ('hc', 'صنایع دستی'),
@@ -85,7 +75,7 @@ class Product(models.Model):
 
 
 class ShoppingCart(models.Model):
-    user_ip = models.ForeignKey(IPAddress, on_delete=models.CASCADE, verbose_name='آی پی کاربر')
+    user_uuid = models.CharField(max_length=40, default="", verbose_name='شناسه کاربر')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='محصول')
     count = models.PositiveSmallIntegerField(default=1, verbose_name='تعداد')
     date_added = jmodels.jDateTimeField(auto_now_add=True)
@@ -95,7 +85,7 @@ class ShoppingCart(models.Model):
         verbose_name_plural = "سبد خرید"
 
     def __str__(self):
-        return f'{self.user_ip.ip_address}:{self.product.title}'
+        return f'{self.user_uuid}:{self.product.title}'
 
     def get_total_price(self):
         return self.product.price * self.count

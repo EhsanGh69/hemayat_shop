@@ -13,100 +13,113 @@ def home(request):
 
     news_letters = NewsLetter.objects.all()
     
-    # time_str = request.session.get('current_time')
-    # if time_str:
-    #     time_obj = timezone.datetime.strptime(time_str.split('.')[0], '%Y-%m-%d %H:%M:%S')
-    #     now_str = str(timezone.now()).split('.')[0]
-    #     time_diff = timezone.datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S') - time_obj
-    #     print(time_diff.seconds)
-    # else:
-    #     print('session has expired!')
-
-    
+    time_str = request.session.get('current_time')
+    temp_user = request.session.get('temp_user')
+    print(temp_user)
+    if time_str:
+        time_obj = timezone.datetime.strptime(time_str.split('.')[0], '%Y-%m-%d %H:%M:%S')
+        now_str = str(timezone.now()).split('.')[0]
+        time_diff = timezone.datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S') - time_obj
+        print(time_diff.seconds)
+    else:
+        print('session has expired!')
 
     return render(request, 'shop/home.html', { 'news_letters': news_letters })
 
 
 def navbar_view(request):
-    ip_obj = request.user.ip_address
-    cart_count = ShoppingCart.objects.filter(user_ip=ip_obj).count()
+    temp_user = request.session.get('temp_user')
+    if temp_user is not None:
+        cart_count = ShoppingCart.objects.filter(user_uuid=temp_user).count()
+    else:
+        cart_count = 0
 
     return render(request, 'shop/partials/navbar.html', { 'cart_count': cart_count })
 
 
 
 def shop_cart(request):
-    ip_obj = request.user.ip_address
-    cart_objects = ShoppingCart.objects.filter(user_ip=ip_obj).order_by('date_added').all()
-    
-    if cart_objects:
-        cart_objects_prices = [obj.get_total_price() for obj in cart_objects]
-        total_cart_price = sum(cart_objects_prices)
-        return render(request, 'shop/shop_cart.html', { 'empty_cart': False, 
+    temp_user = request.session.get('temp_user')
+    if temp_user is not None:
+        cart_objects = ShoppingCart.objects.filter(user_uuid=temp_user).order_by('date_added').all()
+        if cart_objects:
+            cart_objects_prices = [obj.get_total_price() for obj in cart_objects]
+            total_cart_price = sum(cart_objects_prices)
+            return render(request, 'shop/shop_cart.html', { 'empty_cart': False, 
                                                        'cart_objects': cart_objects, 
                                                        'total_cart_price':total_cart_price })
+    
     return render(request, 'shop/shop_cart.html', { 'empty_cart': True })
 
 
-class HandicraftsProducts(ListView):
-    context_object_name = "hand_products"
-    template_name = "shop/products/handicrafts_products.html"
+class AllProducts(ListView):
+    context_object_name = "products"
+    template_name = "shop/products/all_products.html"
     paginate_by = 15
 
     def get_queryset(self):
+        global group
+        group = self.kwargs.get('group')
         category = self.request.GET.get('category')
         if category:
-            return Product.objects.filter(category__title=category).order_by('-status', 'create_date').all()
-        return Product.objects.order_by('-status', 'create_date').all()
+            return Product.objects.filter(category__title=category, category__main_cat=group).order_by('-status', 'create_date').all()
+        return Product.objects.filter(category__main_cat=group).order_by('-status', 'create_date').all()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        ip_obj = self.request.user.ip_address
-        cart_objects = ShoppingCart.objects.filter(user_ip=ip_obj).all()
-        context['cart_products'] = [obj.product for obj in cart_objects]
-        context['hand_categories'] = ProductCategory.objects.filter(main_cat='hc').all()
+        temp_user = self.request.session.get('temp_user')
+        if temp_user is not None:
+            cart_objects = ShoppingCart.objects.filter(user_uuid=temp_user).all()
+            context['cart_products'] = [obj.product for obj in cart_objects]
+        else:
+            context['cart_products'] = []
+        context['categories'] = ProductCategory.objects.filter(main_cat=group).all()
+        context['group'] = group
         return context
     
 
-class HandicraftProduct(DetailView):
-    context_object_name = "hand_product"
-    template_name = "shop/products/handicraft_product.html"
+class SingleProduct(DetailView):
+    context_object_name = "product"
+    template_name = "shop/products/single_product.html"
 
     def get_object(self):
+        global group
+        group = self.kwargs.get('group')
         slug = self.kwargs.get('slug')
         product_title = slug.replace('-', ' ')
-        return get_object_or_404(Product, title=product_title)
+        return get_object_or_404(Product, title=product_title, category__main_cat=group)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        ip_obj = self.request.user.ip_address
-        cart_objects = ShoppingCart.objects.filter(user_ip=ip_obj).all()
-        context['cart_products'] = [obj.product for obj in cart_objects]
-        context['hand_categories'] = ProductCategory.objects.filter(main_cat='hc').all()
+        temp_user = self.request.session.get('temp_user')
+        if temp_user is not None:
+            cart_objects = ShoppingCart.objects.filter(user_uuid=temp_user).all()
+            context['cart_products'] = [obj.product for obj in cart_objects]
+        else:
+            context['cart_products'] = []
+        context['products'] = Product.objects.filter(status=True).all()
+        context['categories'] = ProductCategory.objects.filter(main_cat=group).all()
+        context['group'] = group
         return context
 
 
 def add_to_cart(request):
-    ip_obj = request.user.ip_address
     temp_user = request.session.get('temp_user')
-    if temp_user is None:
-        request.session['current_time'] = str(timezone.now())
-        request.session['temp_user'] = ip_obj.ip_address
-
     product_id = request.POST.get('product_id')
-
     product = get_object_or_404(Product, pk=product_id)
 
-    existing_product = ShoppingCart.objects.filter(user_ip=ip_obj, product=product).first()
-
-    if not existing_product:
-        ShoppingCart.objects.create(user_ip=ip_obj, product=product)
-        messages.add_message(request, messages.SUCCESS, f"{product_id}")
+    if temp_user is not None:
+        existing_product = ShoppingCart.objects.filter(user_uuid=temp_user, product=product).first()
+        if not existing_product:
+            ShoppingCart.objects.create(user_uuid=temp_user, product=product)
+            messages.add_message(request, messages.SUCCESS, f"{product_id}")
         
-
     category = request.GET.get('category')
-    if category:
+    slug = request.GET.get('slug')
+    if category and not slug:
         return redirect(reverse_lazy('shop:handicrafts_products') + f'?category={category}')
+    elif category and slug:
+        return redirect(reverse_lazy('shop:handicraft_product', kwargs={'slug':slug}) + f'?category={category}')
     return redirect(reverse_lazy('shop:handicrafts_products'))
 
 

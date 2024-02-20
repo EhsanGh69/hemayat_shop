@@ -2,10 +2,10 @@
 <li class="dropdown d-none d-xl-inline">
     <a class="nav-link dropdown">محصولات</a>
     <div class="dropdown-content">
-        <a href="{% url 'shop:handicrafts_products' %}">صنایع دستی</a>
-        <a class="text-secondary">مواد غذایی</a>
-        <a class="text-secondary">لوازم خانگی</a>
-        <a class="text-secondary">تفریح و گردشگری</a>
+        <a href="{% url 'shop:all_products' 'hc' %}">صنایع دستی</a>
+        <a href="{% url 'shop:all_products' 'fs' %}">مواد غذایی</a>
+        <a href="{% url 'shop:all_products' 'ha' %}">لوازم خانگی</a>
+        <a href="{% url 'shop:all_products' 'rt' %}">تفریح و گردشگری</a>
     </div>
 </li>
 <li class="d-xl-none" id="collapse-menu">
@@ -14,10 +14,10 @@
         <span class="icon-chevron-left mr-5"></span>
     </a>
     <div class="collapse bg-light" id="submenu">
-        <a href="{% url 'shop:handicrafts_products' %}">صنایع دستی</a>
-        <a class="text-secondary">مواد غذایی</a>
-        <a class="text-secondary">لوازم خانگی</a>
-        <a class="text-secondary">تفریح و گردشگری</a>
+        <a href="{% url 'shop:all_products' 'hc' %}">صنایع دستی</a>
+        <a href="{% url 'shop:all_products' 'fs' %}">مواد غذایی</a>
+        <a href="{% url 'shop:all_products' 'ha' %}">لوازم خانگی</a>
+        <a href="{% url 'shop:all_products' 'rt' %}">تفریح و گردشگری</a>
     </div>
 </li>
 <li>

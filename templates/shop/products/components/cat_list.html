@@ -1,8 +1,8 @@
 <div class="mb-3" id="cat-list">
-    <a href="{% url all_url %}" class="btn btn-warning mt-2
+    <a href="{% url base_url group %}" class="btn btn-warning mt-2
     {% if not request.GET.category %}active{% endif %}">همه</a>
     {% for category in categories %}
-        <a href="{% url all_url %}?category={{ category.title }}" 
+        <a href="{% url base_url group %}?category={{ category.title }}" 
         class="btn btn-warning mt-2
         {% if request.GET.category == category.title %}active{% endif %}">
         {{ category.title }}</a>

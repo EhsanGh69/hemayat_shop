@@ -1,8 +1,8 @@
 from django.urls import path
 
 from .views import (
-    home, navbar_view, shop_cart, NewsLetters, HandicraftsProducts, NewsDetail, 
-    HandicraftProduct, add_to_cart, DeleteCartProduct, change_product_count, ContactUsView
+    home, navbar_view, shop_cart, NewsLetters, AllProducts, NewsDetail, 
+    SingleProduct, add_to_cart, DeleteCartProduct, change_product_count, ContactUsView
 )
 
 app_name = "shop"
@@ -14,9 +14,9 @@ urlpatterns = [
     path('news_letters/', NewsLetters.as_view(), name="news_letters"),
     path('news_letters/page/<int:page>', NewsLetters.as_view(), name="news_letters"),
     path('news_detail/<str:slug>', NewsDetail.as_view(), name="news_detail"),
-    path('products/handicrafts', HandicraftsProducts.as_view(), name="handicrafts_products"),
-    path('products/handicrafts/page/<int:page>', HandicraftsProducts.as_view(), name="handicrafts_products"),
-    path('products/handicrafts/<str:slug>', HandicraftProduct.as_view(), name="handicraft_product"),
+    path('products/<str:group>', AllProducts.as_view(), name="all_products"),
+    path('products/<str:group>/page/<int:page>', AllProducts.as_view(), name="all_products"),
+    path('products/<str:group>/<str:slug>', SingleProduct.as_view(), name="single_product"),
     path('add_to_cart/', add_to_cart, name="add_to_cart"),
     path('delete_from_cart/<int:pk>', DeleteCartProduct.as_view(), name="delete_from_cart"),
     path('change_product_count/<int:pk>', change_product_count, name="change_product_count"),
