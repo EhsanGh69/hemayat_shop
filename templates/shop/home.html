@@ -3,29 +3,49 @@
 {% load jformat %}
 
 {% block content %}
-    <div class="site-blocks-cover" 
-        style="background-image: url({% static 'shop/images/handicrafts_banner.jpg' %});"
-        data-aos="fade" data-stellar-background-ratio="0.5">
-        <div class="container p-0">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
-                    <div class="row">
-                        <div class="col-md-7 offset-md-4">
-                            <h1 class="bg-dark d-inline rounded border border-light p-2 mr-xl-4" 
-                            style="font-size: 3.5rem">
-                                <span>فروشگاه حمایت</span>
-                            </h1>
-                            <div class="mt-5">
-                                <a href="#" 
-                                class="btn btn-light text-info py-3 px-5 
-                                rounded mb-lg-0 mb-2 d-block d-sm-inline-block" 
-                                style="font-size: 1.5rem">کمک های مردمی</a>
-                                <a href="#products-section" 
-                                class="btn btn-info py-3 px-5 rounded d-block mr-sm-3
-                                d-sm-inline-block" style="font-size: 1.5rem">فروشگاه</a>
+    <div class="site-section" id="carousel-section">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-12">
+                    <h3 class="section-title mb-5 text-center text-secondary">تازه ترین محصولات</h3>
+                </div>
+                <div class="col-12">
+                    {% if new_products %}
+                        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner text-center rounded shadow-lg">
+                                {% for product in new_products %}
+                                    <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+                                        <img src="{{ product.product_img.url }}" 
+                                        class="d-block w-100" alt="{{ product.title }}" height="500">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h3>{{ product.title }}</h3>
+                                            <a href="{% url 'shop:single_product' product.category.main_cat product.get_slug %}" 
+                                            class="btn btn-info"
+                                            style="font-size: 1.3rem">مشاهده جزئیات</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
+                            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="alert alert-danger text-secondary text-center p-5 w-100" style="font-size: 1.5rem">
+                            <span class="icon-shopping-cart"></span>
+                            <span>محصولی وجود ندارد</span>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -33,11 +53,11 @@
 
     <div class="site-section mt-0" id="products-section">
         <div class="container">
-            <div class="row pt-5">
+            <div class="row">
                 <div class="col-12">
-                    <h2 class="section-title mb-5 text-center text-secondary">دسته بندی محصولات</h2>
+                    <h3 class="section-title mb-5 text-center text-secondary">دسته بندی محصولات</h3>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-5">
+                <div class="col-md-6 col-lg-3 mb-5 shadow-sm">
                     <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/handicrafts_cat.jpg' %}" alt="handicrafts_cat" class="img-fluid">
@@ -51,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-5">
+                <div class="col-md-6 col-lg-3 mb-5 shadow-sm">
                     <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/foods_cat.jpg' %}" alt="foods_cat" class="img-fluid">
@@ -67,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-5">
+                <div class="col-md-6 col-lg-3 mb-5 shadow-sm">
                     <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/home_appliances_cat.jpg' %}" alt="home_appliances_cat" class="img-fluid">
@@ -83,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-5">
+                <div class="col-md-6 col-lg-3 mb-5 shadow-sm">
                     <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/tourism_cat.jpg' %}" alt="tourism_cat" class="img-fluid">
@@ -150,4 +170,12 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('.carousel').carousel({
+            interval: 3000
+            })
+    </script>
 {% endblock %}

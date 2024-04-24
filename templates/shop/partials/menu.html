@@ -23,9 +23,9 @@
     </a>
     <div class="collapse bg-light" id="submenu">
         <a href="{% url 'shop:all_products' 'hc' %}">صنایع دستی</a>
-        <a class="text-light" href="#">مواد غذایی</a>
-        <a class="text-light" href="#">لوازم خانگی</a>
-        <a class="text-light" href="#">تفریح و گردشگری</a>
+        <a href="#">مواد غذایی</a>
+        <a href="#">لوازم خانگی</a>
+        <a href="#">تفریح و گردشگری</a>
     </div>
 </li>
 <li class="li-nav">
@@ -41,6 +41,9 @@
     <a href="{% url 'shop:news_letters' %}" class="nav-link text-light
     {% if request.resolver_match.url_name == 'news_letters' or request.resolver_match.url_name == 'news_detail' %}
     bg-warning text-dark{% endif %}">خبرنامه</a>
+</li>
+<li class="li-nav">
+    <a href="#" class="nav-link text-light">کمک های مردمی</a>
 </li>
 <li class="li-nav">
     <a href="{% url 'shop:contact_us' %}" class="nav-link text-light

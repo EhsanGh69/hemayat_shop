@@ -12,20 +12,17 @@ from .forms import ContactUsForm
 
 def home(request):
 
-    news_letters = NewsLetter.objects.all()
+    news_letters = NewsLetter.objects.all()[:3]
     
-    time_str = request.session.get('current_time')
-    temp_user = request.session.get('temp_user')
-    print(temp_user)
-    if time_str:
-        time_obj = timezone.datetime.strptime(time_str.split('.')[0], '%Y-%m-%d %H:%M:%S')
-        now_str = str(timezone.now()).split('.')[0]
-        time_diff = timezone.datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S') - time_obj
-        print(time_diff.seconds)
-    else:
-        print('session has expired!')
+    all_products = Product.objects.order_by('-create_date').all()
+    new_products = []
+    if all_products.count() >= 3:
+        new_products = all_products[:3]
 
-    return render(request, 'shop/home.html', { 'news_letters': news_letters })
+    return render(request, 'shop/home.html', { 
+        'news_letters': news_letters, 
+        'new_products': new_products
+        })
 
 
 def navbar_view(request):

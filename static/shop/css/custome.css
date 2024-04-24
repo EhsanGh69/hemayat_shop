@@ -144,8 +144,12 @@ span.icon-menu {
 }
 
 #products-section {
-  background-color: #a6ff00;
+  background-color: #eee;
   margin-top: 5rem;
+}
+
+#carousel-section {
+  background-color: #ddd;
 }
 
 .site-blocks-cover .container h1{

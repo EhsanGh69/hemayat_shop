@@ -16,19 +16,20 @@
     <header class="site-navbar bg-dark js-sticky-header site-navbar-target" role="banner">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-6 d-inline-block d-xl-none ml-md-0" style="position: relative; top: 3px;">
+                <div class="col-2 d-inline-block d-xl-none ml-md-0" style="position: relative; top: 3px;">
                     <a href="#" class="site-menu-toggle js-menu-toggle text-black float-right">
                         <span class="icon-menu h3"></span>
                     </a>
                 </div>
-                <div class="col-6 col-xl-2">
+                <div class="col-8 col-md-3">
                     <h3 class="my-2 site-logo">
                         <a href="{% url 'shop:home' %}" class="text-black mb-0 d-flex">
                             <img src="{% static 'shop/images/header_logo_100.jpg' %}" width="60" alt="header logo">
+                            <span class="text-light mt-3 mr-1">فروشگاه حمایت</span>
                         </a>
                     </h3>
                 </div>
-                <div class="col-12 col-md-10 d-none d-xl-block">
+                <div class="col-12 col-md-9 d-none d-xl-block">
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu mr-auto d-none d-lg-block">
                             {% include "shop/partials/menu.html" %} 
