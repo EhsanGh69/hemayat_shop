@@ -4,6 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.db.models.query import Q
 
 from .models import NewsLetter, Product, ProductCategory, ShoppingCart, ContactUs
 from .forms import ContactUsForm
@@ -37,7 +38,6 @@ def navbar_view(request):
     return render(request, 'shop/partials/navbar.html', { 'cart_count': cart_count })
 
 
-
 def shop_cart(request):
     temp_user = request.session.get('temp_user')
     if temp_user is not None:
@@ -55,7 +55,7 @@ def shop_cart(request):
 class AllProducts(ListView):
     context_object_name = "products"
     template_name = "shop/products/all_products.html"
-    paginate_by = 15
+    paginate_by = 5
 
     def get_queryset(self):
         global group
@@ -74,6 +74,29 @@ class AllProducts(ListView):
         else:
             context['cart_products'] = []
         context['categories'] = ProductCategory.objects.filter(main_cat=group).all()
+        context['group'] = group
+        return context
+    
+
+class SearchProducts(ListView):
+    context_object_name = "products"
+    template_name = "shop/products/all_products.html"
+    paginate_by = 15
+
+    def get_queryset(self):
+        global group
+        group = self.kwargs.get('group')
+        query = self.request.GET.get('product_search')
+        return Product.objects.filter(Q(title__icontains=query), category__main_cat=group).order_by('-status', 'create_date').distinct()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        temp_user = self.request.session.get('temp_user')
+        if temp_user is not None:
+            cart_objects = ShoppingCart.objects.filter(user_uuid=temp_user).all()
+            context['cart_products'] = [obj.product for obj in cart_objects]
+        else:
+            context['cart_products'] = []
         context['group'] = group
         return context
     
@@ -114,13 +137,9 @@ def add_to_cart(request):
             ShoppingCart.objects.create(user_uuid=temp_user, product=product)
             messages.add_message(request, messages.SUCCESS, f"{product_id}")
         
-    category = request.GET.get('category')
-    slug = request.GET.get('slug')
-    if category and not slug:
-        return redirect(reverse_lazy('shop:handicrafts_products') + f'?category={category}')
-    elif category and slug:
-        return redirect(reverse_lazy('shop:handicraft_product', kwargs={'slug':slug}) + f'?category={category}')
-    return redirect(reverse_lazy('shop:handicrafts_products'))
+    group = request.GET.get('group')
+    
+    return redirect(reverse_lazy('shop:all_products', kwargs={'group':group}))
 
 
 class DeleteCartProduct(DeleteView):

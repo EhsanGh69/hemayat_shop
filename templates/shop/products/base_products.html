@@ -5,8 +5,25 @@
     <div class="container-fluid">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-10">
-                <div class="card bg-light margin-card">
-                    <div class="card-header text-info h4">{% block cat_title %}{% endblock %}</div>
+                <div class="card bg-secondary margin-card">
+                    <div class="card-header d-flex flex-column flex-md-row justify-content-between">
+                        <h4 class="text-light">{% block cat_title %}{% endblock %}</h4>
+                        <div class="w-50">
+                            <form 
+                            action="{% url 'shop:search_products' request.resolver_match.kwargs.group %}">
+                                <div class="input-group">
+                                    <input type="serach" placeholder="جستجوی محصولات" 
+                                    class="form-control" name="product_search"
+                                    value="{{ request.GET.product_search }}">
+                                    <div class="input-group-append rounded-left">
+                                        <div class="input-group-text bg-info">
+                                            <span class="icon-search text-light"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="mb-3" id="cat-list">
                             {% block cat_list %}{% endblock %}

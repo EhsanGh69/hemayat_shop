@@ -97,4 +97,61 @@ footer {
   font-size: 1rem;
 }
 
+.dropdown-content {
+  margin-top: 2px;
+}
 
+.dropdown-content a:hover {
+  color: #343A40 !important;
+}
+
+li.li-nav, li.li-nav a {
+  border-radius: 5px;
+}
+
+li.li-nav, .dropdown-content a, #collapse-menu a {
+  font-weight: 700 !important;
+  transition: all 0.5s;
+}
+
+li.li-nav:hover {
+ background-color: #F89D13;
+}
+
+li.li-nav a:hover {
+  color: #343A40 !important;
+}
+
+.dropdown-content a:hover {
+  background-color: #F89D13;
+}
+
+span.icon-menu {
+  color: #ddd;
+}
+
+.site-mobile-menu-body {
+  overflow: hidden !important;
+}
+
+#collapse-menu .collapse a:hover {
+  background-color: #F89D13;
+  color: #343A40 !important;
+}
+
+.site-logo a img, footer img {
+  border-radius: 50%;
+}
+
+#products-section {
+  background-color: #a6ff00;
+  margin-top: 5rem;
+}
+
+.site-blocks-cover .container h1{
+  opacity: 0.8;
+}
+
+footer {
+  height: 250px;
+}

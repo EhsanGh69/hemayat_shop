@@ -1,4 +1,9 @@
-<footer class="bg-light">
+{% load static %}
+
+<footer class="bg-dark text-light px-5 d-flex justify-content-center">
+    <div>
+        <img src="{% static 'shop/images/header_logo_200.jpg' %}" alt="header logo">
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2 text-center">
@@ -11,7 +16,9 @@
         </div>
         <div class="row">
             <div class="col-8 offset-2 text-center">
-                <strong>Copyright &copy; 2023 <a href="#">تمام حقوق این نرم‌افزار برای فروشگاه حمایت محفوظ است</a></strong>
+                <div>
+                    <strong>Copyright &copy; 2023 <a href="#">تمام حقوق این نرم‌افزار برای فروشگاه حمایت محفوظ است</a></strong>
+                </div>
             </div>
         </div>
     </div>

@@ -3,16 +3,19 @@
 {% load jformat %}
 
 {% block content %}
-    <div class="site-blocks-cover mb-5" 
+    <div class="site-blocks-cover" 
         style="background-image: url({% static 'shop/images/handicrafts_banner.jpg' %});"
         data-aos="fade" data-stellar-background-ratio="0.5">
-        <div class="container">
+        <div class="container p-0">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
-                    <div class="row mb-4">
-                        <div class="col-md-7">
-                            <h1 class="bg-dark d-inline rounded" style="font-size: 3.5rem">فروشگاه حمایت</h1>
-                            <div class="mt-4">
+                    <div class="row">
+                        <div class="col-md-7 offset-md-4">
+                            <h1 class="bg-dark d-inline rounded border border-light p-2 mr-xl-4" 
+                            style="font-size: 3.5rem">
+                                <span>فروشگاه حمایت</span>
+                            </h1>
+                            <div class="mt-5">
                                 <a href="#" 
                                 class="btn btn-light text-info py-3 px-5 
                                 rounded mb-lg-0 mb-2 d-block d-sm-inline-block" 
@@ -28,14 +31,14 @@
         </div>
     </div>
 
-    <div class="site-section mt-5" id="products-section">
+    <div class="site-section mt-0" id="products-section">
         <div class="container">
             <div class="row pt-5">
                 <div class="col-12">
-                    <h2 class="section-title mb-5 text-center">دسته بندی محصولات</h2>
+                    <h2 class="section-title mb-5 text-center text-secondary">دسته بندی محصولات</h2>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-5">
-                    <div class="product-item">
+                    <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/handicrafts_cat.jpg' %}" alt="handicrafts_cat" class="img-fluid">
                         </figure>
@@ -49,43 +52,49 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-5">
-                    <div class="product-item">
+                    <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/foods_cat.jpg' %}" alt="foods_cat" class="img-fluid">
                         </figure>
-                        <div class="px-5">
+                        <div>
                             <h3>مواد غذایی</h3>
                             <div class="mt-5">
-                                <a href="{% url 'shop:all_products' 'fs' %}"
+                                <a href="#"
                                 class="btn btn-warning btn-outline-warning ml-1 rounded">مشاهده محصولات</a>
+                                {% comment %} <a href="{% url 'shop:all_products' 'fs' %}"
+                                class="btn btn-warning btn-outline-warning ml-1 rounded">مشاهده محصولات</a> {% endcomment %}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-5">
-                    <div class="product-item">
+                    <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/home_appliances_cat.jpg' %}" alt="home_appliances_cat" class="img-fluid">
                         </figure>
-                        <div class="px-5">
+                        <div>
                             <h3>لوازم خانگی</h3>
                             <div class="mt-5">
-                                <a href="{% url 'shop:all_products' 'ha' %}"
+                                <a href="#"
                                 class="btn btn-warning btn-outline-warning ml-1 rounded">مشاهده محصولات</a>
+                                {% comment %} <a href="{% url 'shop:all_products' 'ha' %}"
+                                class="btn btn-warning btn-outline-warning ml-1 rounded">مشاهده محصولات</a> {% endcomment %}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-5">
-                    <div class="product-item">
+                    <div class="product-item bg-light p-3 rounded">
                         <figure>
                             <img src="{% static 'shop/images/tourism_cat.jpg' %}" alt="tourism_cat" class="img-fluid">
                         </figure>
-                        <div class="px-5">
+                        <div>
                             <h3>تفریح و گردشگری</h3>
                             <div class="mt-5">
-                                <a href="{% url 'shop:all_products' 'rt' %}"
+                                <a href="#"
                                 class="btn btn-warning btn-outline-warning ml-1 rounded">مشاهده محصولات</a>
+                                {% comment %} <a href="{% url 'shop:all_products' 'rt' %}"
+                                class="btn btn-warning btn-outline-warning ml-1 rounded">مشاهده محصولات</a> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -94,7 +103,7 @@
         </div>
     </div>
 
-    <div class="site-section" id="blog-section">
+    <div class="site-section bg-light" id="blog-section">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">

@@ -1,10 +1,10 @@
 <div class="card">
     <img src="{{ product.product_img.url }}"
-    style="{% if detail_url %}height: 150px;{% else %}height: 300px;{% endif %}"
+    style="{% if detail_url %}height: 300px;{% else %}height: 500px;{% endif %}"
     class="card-img-top w-100" alt="crocheting">
     <div class="card-body">
         <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">
+        <p class="card-text border-bottom pb-2">
             {% if detail_url %}
                 <a href="{% url detail_url group slug %}?category={{ product.category.title }}">جزئیات بیشتر  ...</a>
             {% else %}
@@ -22,7 +22,7 @@
             </div>
         {% elif product.status %}
             <div class="d-flex justify-content-between">
-                <form action="{% url 'shop:add_to_cart' %}{% if request.resolver_match.url_name == 'handicraft_product' %}?slug={{ product.get_slug }}&category={{ product.category.title }}{% elif request.GET.category %}?category={{ product.category.title }}{% endif %}" method="post">
+                <form action="{% url 'shop:add_to_cart' %}?group={{product.category.main_cat}}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="product_id" value="{{product.id}}">
                     <button class="btn btn-primary"

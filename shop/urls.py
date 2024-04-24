@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (
-    home, navbar_view, shop_cart, NewsLetters, AllProducts, NewsDetail, 
+    home, navbar_view, shop_cart, NewsLetters, AllProducts, SearchProducts, NewsDetail, 
     SingleProduct, add_to_cart, DeleteCartProduct, change_product_count, ContactUsView
 )
 
@@ -16,6 +16,10 @@ urlpatterns = [
     path('news_detail/<str:slug>', NewsDetail.as_view(), name="news_detail"),
     path('products/<str:group>', AllProducts.as_view(), name="all_products"),
     path('products/<str:group>/page/<int:page>', AllProducts.as_view(), name="all_products"),
+
+    path('products/search/<str:group>', SearchProducts.as_view(), name="search_products"),
+    path('products/search/<str:group>/page/<int:page>', SearchProducts.as_view(), name="search_products"),
+
     path('products/<str:group>/<str:slug>', SingleProduct.as_view(), name="single_product"),
     path('add_to_cart/', add_to_cart, name="add_to_cart"),
     path('delete_from_cart/<int:pk>', DeleteCartProduct.as_view(), name="delete_from_cart"),
